@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
     <link href="/static/base.css" rel="stylesheet" media="screen">
+    <!--
     <script src="http://code.jquery.com/jquery.min.js"></script>
     <script src="/static/list.js"></script>
     <script src="https://login.persona.org/include.js"></script>
@@ -14,11 +15,11 @@
 
             var loginLink = document.getElementById('login');
             if (loginLink) {
-                loginLink.onclick = function() {navigatior.id.request(); };
+                loginLink.onclick = function() { navigator.id.request(); };
             }
             var logoutLink = document.getElementById('logout');
             if (logoutLink) {
-                logoutLink.onclick = function() {navigatior.id.logout(); };
+                logoutLink.onclick = function() { navigator.id.logout(); };
             }
 
             var currentUser = '{{ user.email }}' || null;
@@ -30,30 +31,39 @@
                 onlogin: function(assertion) {
                     $.post('/accounts/login', {assertion: assertion,
                         csrfmiddlewaretoken: csrf_token})
-                    .done(function() {window.location.reload(); })
-                    .fail(function() {navigator.id.logout();});
+                    .done(function() { window.location.reload(); })
+                    .fail(function() { navigator.id.logout();});
                 },
                 onlogout: function() {
                     $.post('/accouts/logout')
-                    .allways(function() {window.location.reload(); });
+                    .always(function() { window.location.reload(); });
                 }
             });
         });
     </script>
+    -->
 
 </head>
     
 <body>
 <div class="container">
+    
+<!--
     <div class="navbar">
         {% if user.email %}
-            <p>로그인 상태 {{ user.email}}</p>
+            <p>로그인 상태 {{ user.email }}</p>
             <p><a id="logout" href="{% url 'logout' %}">로그아웃</a></p>
         {% else %}
             <a href="#" id="login">로그인</a>
         {% endif %}
         <p>사용자: {{user}}</p>
     </div>
+-->
+
+    <nav class="navbar navbar-default" role="navigation">
+        <a class="navbar-brand" href="/">Superlists</a>
+        <a class="btn navbar-right" id="id_login" href="#">로그인</a>
+    </nav>
 
     <div class="row">
         <div class="col-md-6 col-md-offset-3 jumbotron">

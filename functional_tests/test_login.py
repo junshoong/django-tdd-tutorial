@@ -8,7 +8,7 @@ class LoginTest(FunctionalTest):
         # 에디스는 superlist 사이트에 접속한다
         # 그리고 "회원 가입" 링크를 발견한다
         self.browser.get(self.server_url)
-        self.browser.find_element_by_id('login').click()
+        self.browser.find_element_by_id('id_login').click()
 
         # 개인 로그인 박스가 표시된다
         self.switch_to_new_window('Mozilla Persona')
@@ -24,7 +24,7 @@ class LoginTest(FunctionalTest):
         self.switch_to_new_window('To-Do')
 
         # 로그인된 것을 알 수 있다.
-        self.wait_for_element_with_id('logout')
+        self.wait_for_element_with_id('id_logout')
         navbar = self.browser.find_element_by_css_selector('.navbar')
         self.assertIn('edith@mockmyid.com', navbar.text)
 
